@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+
+    <title>CODE4DEM</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/heart.css}">
+    <link rel="stylesheet" th:href="@{/css/askQuestion.css}">
+    <link rel="stylesheet" th:href="@{/css/comments.css}">
+    <link rel="stylesheet" th:href="@{/css/imageDetails.css}">
+    <link rel="stylesheet" th:href="@{/css/inputComment.css}">
+
+    <script type="text/javascript" th:src="@{/js/galleryPage.js}"></script>
+    <script type="text/javascript" th:src="@{/js/askQuestion.js}"></script>
+    <script type="text/javascript" th:src="@{/js/scrollBar-showing-measure.js}"></script>
+
+</head>
+
+<body>
+
+<div class="header">
+    <h2>MIRA MIRA</h2>
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+</div>
+
+<div class="content">
+
+    <div class="imageDetails">
+
+        <img style="width:100%" src="../static/img/1.jpeg" th:src="@{img/1.jpeg}"/>
+
+        <div class="desc">
+            Add a description of the image here. Insert the missing statement to get all the
+            columns from the Customers table.
+        </div>
+
+        <span class="heading">User Rating</span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <p>4.1 average based on 254 reviews.</p>
+        <hr style="border:3px solid #f1f1f1">
+
+        <div class="row">
+            <div class="side">
+                <div>5 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-5"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>150</div>
+            </div>
+            <div class="side">
+                <div>4 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-4"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>63</div>
+            </div>
+            <div class="side">
+                <div>3 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-3"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>15</div>
+            </div>
+            <div class="side">
+                <div>2 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-2"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>6</div>
+            </div>
+            <div class="side">
+                <div>1 star</div>
+            </div>
+            <div class="middle">
+                <div class="bar-container">
+                    <div class="bar-1"></div>
+                </div>
+            </div>
+            <div class="side right">
+                <div>20</div>
+            </div>
+        </div>
+
+
+        <br>
+        <!--comments section-->
+        <div style="text-align: center;">
+            <h2>Comments</h2>
+        </div>
+        <br>
+        <!--comment inputForm-->
+        <form action="#" th:action="@{/imageDetails}" th:object="${imageDetails}" method="post" class="enter-data-div">
+            <div style="display: flex; width: 100%; ">
+
+                <div style="width: 28%; margin: 5px;">
+                    <b>Enter Your UserName... </b> <br>
+                    <input class="buttonI button2" th:field="*{userName}" type="text" requiredminlength="1"
+                           maxlength="20"
+                           placeholder="Enter UserName..." pattern="[A-Za-z0-9]{1,20}"
+                           style="width: 100%;"/>
+                </div>
+
+                <div style="width: 70%;">
+                    <b>Enter Your Comment here...</b><br>
+                    <textarea name="comment" type="text" th:field="*{comment}" style="width: 100%;"
+                              requiredminlength="1" maxlength="100" class="textArea1"
+                              placeholder="Enter Your Comment here..."> </textarea>
+                </div>
+
+            </div>
+
+            <button class="button button1" type="submit" value="Submit">Submit</button>
+            <input class="button button1" type="reset" value="Reset"/>
+        </form>
+
+        <!-- START FOREACH: for each comment create one of this div -->
+                <div>
+                    <p>not yet</p>
+                    <div th:if="${not #lists.isEmpty(commentsList)}">
+                        hellooooo
+                    </div>
+                    <div class="container" th:each="comment : ${commentsList}">
+                        <img style="width:90px" alt="Avatar" src="../static/img/10.jpg" th:src="@{img/10.jpg}"/>
+                        <p>
+                            <span th:text="${comment.userName}"></span>
+                            <span th:text="${comment.profession}"></span>
+                        </p>
+                        <p th:text="${comment.comment}">
+                        </p>
+                    </div>
+                </div>
+        <!-- END FOREACH-->
+
+        <!--        <div class="container">-->
+        <!--            <img style="width:90px" alt="Avatar" src="../static/img/13.jpg" th:src="@{img/13.jpg}"/>-->
+        <!--            <p>-->
+        <!--                &lt;!&ndash;                    userName&ndash;&gt;-->
+        <!--                <span>Rebecca Flex.</span>-->
+        <!--                &lt;!&ndash;                    profession&ndash;&gt;-->
+        <!--                <span>CEO at Company.</span>-->
+        <!--            </p>-->
+        <!--            <p>No one is better than John Doe.</p>-->
+        <!--        </div>-->
+
+        <!--        <div class="container">-->
+        <!--            <img style="width:90px" alt="Avatar" src="../static/img/14.jpeg" th:src="@{img/14.jpeg}"/>-->
+        <!--            <p>-->
+        <!--                <span>Rebecca Flex.</span>-->
+        <!--                <span>CEO at Company.</span>-->
+        <!--            </p>-->
+        <!--            <p>No one is better than John Doe.</p>-->
+        <!--        </div>-->
+
+        <!--        <div class="container">-->
+        <!--            <img style="width:90px" alt="Avatar" src="../static/img/15.webp" th:src="@{img/15.webp}"/>-->
+        <!--            &lt;!&ndash;                <img src="img\15.webp" alt="Avatar" style="width:90px">&ndash;&gt;-->
+        <!--            <p>-->
+        <!--                <span>Rebecca Flex.</span>-->
+        <!--                <span>CEO at Company.</span>-->
+        <!--            </p>-->
+        <!--            <p>No one is better than John Doe.</p>-->
+        <!--        </div>-->
+
+        <!--        <div class="container">-->
+        <!--            <img style="width:90px" alt="Avatar" src="../static/img/9.jpg" th:src="@{img/9.jpg}"/>-->
+        <!--            <p>-->
+        <!--                <span>Rebecca Flex.</span>-->
+        <!--                <span>CEO at Company.</span>-->
+        <!--            </p>-->
+        <!--            <p>No one is better than John Doe.</p>-->
+        <!--        </div>-->
+    </div>
+
+    <!--chat or askQuestion Button-->
+    <button class="open-button" onclick="openForm()">Chat</button>
+
+    <div class="chat-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>Chat</h1>
+
+            <label for="msg"><b>Message</b></label>
+            <textarea placeholder="Type message.." name="msg" required></textarea>
+
+            <button type="submit" class="btn">Send</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+    <!--chat or askQuestion Button-->
+
+    <a href="/imageDetails">Submit another message</a>
+
+</div>
+</body>
+
+</html>

@@ -1,6 +1,5 @@
 package com.user.model;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,6 +13,8 @@ public class Comments {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String comment;
+    private String userName;
+    private String profession;
 //    @NotNull
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "articles_id")

@@ -3,6 +3,7 @@ package com.user.controller;
 import com.user.model.Users;
 import com.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -13,7 +14,7 @@ public class dbStoreService {
 
     @Autowired
     UserRepository userRepository;
-
+    
     /*user store service*/ //TODO
     @GetMapping("/users")
     public Collection<Users> getFindAllUser() {
