@@ -127,14 +127,14 @@
                     <input class="buttonI button2" th:field="*{userName}" type="text" requiredminlength="1"
                            maxlength="20"
                            placeholder="Enter UserName..." pattern="[A-Za-z0-9]{1,20}"
-                           style="width: 100%;"/>
+                           style="width: 100%;" required/>
                 </div>
 
                 <div style="width: 70%;">
                     <b>Enter Your Comment here...</b><br>
                     <textarea name="comment" type="text" th:field="*{comment}" style="width: 100%;"
                               requiredminlength="1" maxlength="100" class="textArea1"
-                              placeholder="Enter Your Comment here..."> </textarea>
+                              placeholder="Enter Your Comment here..." required> </textarea>
                 </div>
 
             </div>
@@ -144,21 +144,27 @@
         </form>
 
         <!-- START FOREACH: for each comment create one of this div -->
-                <div>
-                    <p>not yet</p>
-                    <div th:if="${not #lists.isEmpty(commentsList)}">
-                        hellooooo
-                    </div>
-                    <div class="container" th:each="comment : ${commentsList}">
-                        <img style="width:90px" alt="Avatar" src="../static/img/10.jpg" th:src="@{img/10.jpg}"/>
-                        <p>
-                            <span th:text="${comment.userName}"></span>
-                            <span th:text="${comment.profession}"></span>
-                        </p>
-                        <p th:text="${comment.comment}">
-                        </p>
-                    </div>
-                </div>
+        <div>
+            <div th:if="${commentsList.isEmpty()}">
+                <b>This Post has no comment for the moment..</b>
+            </div>
+            <div class="container" th:each="comment : ${commentsList}">
+                <img style="width:90px" alt="Avatar" src="../static/img/10.jpg" th:src="@{img/10.jpg}"/>
+                <p>
+                    <b>
+                        <span th:text="${comment.userName}"></span>
+                    </b>
+
+                    <b>
+                        <span th:text="${comment.profession}"></span>
+                    </b>
+                </p>
+                <p th:text="${comment.comment}">
+                </p>
+            </div>
+        </div>
+
+
         <!-- END FOREACH-->
 
         <!--        <div class="container">-->
@@ -217,7 +223,7 @@
     </div>
     <!--chat or askQuestion Button-->
 
-    <a href="/imageDetails">Submit another message</a>
+    <a href="/gallery">Submit another message</a>
 
 </div>
 </body>
